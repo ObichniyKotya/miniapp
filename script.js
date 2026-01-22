@@ -24,12 +24,16 @@ function subBalance() {
     }
 }
 
-// Сохраняем баланс локально и отправляем боту
+// Сохраняем локально
 function saveBalance() {
     localStorage.setItem("balance", balance);
-    if(window.Telegram.WebApp) {
+}
+
+// Отправка баланса боту раз в 1 секунду
+setInterval(() => {
+    if(window.Telegram && window.Telegram.WebApp) {
         Telegram.WebApp.sendData(JSON.stringify({balance: balance}));
     }
-}
+}, 1000);
 
 updateDisplay();

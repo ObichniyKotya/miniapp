@@ -9,39 +9,39 @@ body {
 
 .container {
     background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     text-align: center;
     width: 90%;
-    max-width: 400px;
+    max-width: 200px; /* 50% меньше */
 }
 
 .balance {
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 24px; /* 50% меньше */
+    margin-bottom: 15px;
     font-weight: bold;
 }
 
 .row {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 input[type=number] {
-    font-size: 24px;
-    padding: 10px;
-    width: 100px;
+    font-size: 12px; /* 50% меньше */
+    padding: 5px;
+    width: 60px; /* 50% меньше */
     text-align: center;
 }
 
 button {
-    font-size: 24px;
-    padding: 10px 20px;
-    border-radius: 12px;
+    font-size: 12px; /* 50% меньше */
+    padding: 5px 10px;
+    border-radius: 6px;
     border: none;
     background: #4caf50;
     color: white;
@@ -54,5 +54,5 @@ button:hover {
 }
 
 label {
-    font-size: 24px;
+    font-size: 12px; /* 50% меньше */
 }

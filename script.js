@@ -1,32 +1,25 @@
-let input = "";
-let balance = parseInt(localStorage.getItem("balance")) || 0;
+let balance = parseInt(localStorage.getItem("balance")) || 100;
 
 function updateDisplay() {
     document.getElementById("balance").innerText = balance + "₽";
 }
 
-function press(num) {
-    input += num;
-}
-
-function clearInput() {
-    input = "";
-}
-
 function addBalance() {
-    if(input !== "") {
-        balance += parseInt(input);
+    let val = parseInt(document.getElementById("addInput").value);
+    if (!isNaN(val)) {
+        balance += val;
         saveBalance();
-        input = "";
+        document.getElementById("addInput").value = "";
         updateDisplay();
     }
 }
 
 function subBalance() {
-    if(input !== "") {
-        balance -= parseInt(input);
+    let val = parseInt(document.getElementById("subInput").value);
+    if (!isNaN(val)) {
+        balance -= val;
         saveBalance();
-        input = "";
+        document.getElementById("subInput").value = "";
         updateDisplay();
     }
 }

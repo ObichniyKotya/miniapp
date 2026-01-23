@@ -1,69 +1,65 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--tg-theme-bg-color, #fff);
+    color: var(--tg-theme-text-color, #000);
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.container {
-    background: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+.hidden { display: none !important; }
+
+#app, #access-denied {
+    width: 100%;
+    max-width: 400px;
     text-align: center;
-    width: 80%;
-    max-width: 200px;
 }
 
-.balance {
-    font-size: 24px;
-    margin-bottom: 15px;
+.balance-card {
+    background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.balance-value {
+    font-size: 42px;
     font-weight: bold;
+    color: var(--tg-theme-button-color, #248bcf);
 }
 
-.row {
-    margin-bottom: 10px;
+.controls {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 15px;
 }
 
-input[type=number] {
+input {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
     font-size: 16px;
-    padding: 4px;
-    width: 60px;
-    text-align: center;
+    outline: none;
 }
 
-button {
-    font-size: 14px;
-    padding: 4px 8px;
-    border-radius: 6px;
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px;
     border: none;
-    background: #4caf50;
+    border-radius: 10px;
     color: white;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-button:hover {
-    background: #45a049;
-}
+.plus { background-color: #4CAF50; }
+.minus { background-color: #f44336; }
 
-label {
-    font-size: 14px;
-}
-}ursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #45a049;
-}
-
-label {
-    font-size: 12px; /* 50% меньше */
-}
+.btn:active { opacity: 0.8; }

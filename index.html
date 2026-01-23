@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>MiniApp Размер</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Mini App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="balance" id="balance">0</div>
-
-    <div class="row">
-        <label>+ | </label>
-        <input type="number" id="addInput" placeholder="Сумма" />
-        <button onclick="addBalance()">Добавить</button>
+    <div id="access-denied" class="hidden">
+        <h1>Доступ ограничен</h1>
+        <p>У вас нет прав для использования этого приложения.</p>
     </div>
 
-    <div class="row">
-        <label>− | </label>
-        <input type="number" id="subInput" placeholder="Сумма" />
-        <button onclick="subBalance()">Вычесть</button>
+    <div id="app" class="hidden">
+        <div class="header">
+            <h1>Личный кабинет</h1>
+            <p id="username-display"></p>
+        </div>
+
+        <div class="balance-card">
+            <span class="label">Ваш баланс:</span>
+            <div class="balance-value"><span id="balance">0</span>₽</div>
+        </div>
+
+        <div class="controls">
+            <input type="number" id="amount" placeholder="Введите сумму..." min="0">
+            <div class="button-group">
+                <button id="add-btn" class="btn plus">+ Добавить</button>
+                <button id="sub-btn" class="btn minus">- Отнять</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<script src="script.js"></script>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-</body>
-</html>html>"press('0')">0</button>
-    <button onclick="clearInput()">C</button>
-  </div>
-
-  <div class="row">
-    <button onclick="addBalance()">+</button>
-    <button onclick="subBalance()">−</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

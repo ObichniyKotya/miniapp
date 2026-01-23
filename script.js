@@ -1,64 +1,59 @@
-let balance = 0;
+const tg = window.Telegram.WebApp;
 
-Telegram.WebApp.ready();
+// Список разрешенных пользователей
+const ALLOWED_USERS = ['Obichniy_kotya', 'NekZit_'];
 
-let userId = Telegram.WebApp.initDataUnsafe.user.id;
+// Инициализация Mini App
+tg.expand();
 
-// ВСТАВЬ СЮДА СВОИ ID
-const ADMINS = [Obichniy_kotya, NekZit];
+const user = tg.initDataUnsafe?.user;
+const appContainer = document.getElementById('app');
+const deniedContainer = document.getElementById('access-denied');
+const balanceEl = document.getElementById('balance');
+const amountInput = document.getElementById('amount');
 
-function isAdmin() {
-    return ADMINS.includes(userId);
+// Генерируем уникальный ключ для сохранения баланса именно этого пользователя
+// Если ID недоступен (тест вне ТГ), используем 'guest'
+const storageKey = user ? `balance_${user.id}` : 'balance_guest';
+
+// Проверка доступа
+if (user && ALLOWED_USERS.includes(user.username)) {
+    appContainer.classList.remove('hidden');
+    document.getElementById('username-display').innerText = `@${user.username}`;
+    loadBalance();
+} else {
+    // Если запускаешь не через Телеграм, для теста можно закомментировать строку ниже
+    deniedContainer.classList.remove('hidden');
 }
 
-function updateDisplay() {
-    document.getElementById("balance").innerText = balance + "₽";
+// Загрузка баланса из памяти
+function loadBalance() {
+    const savedBalance = localStorage.getItem(storageKey) || 0;
+    balanceEl.innerText = savedBalance;
 }
 
-function addBalance() {
-    if (!isAdmin()) return alert("Вы не можете изменять баланс");
+// Сохранение баланса
+function saveBalance(value) {
+    localStorage.setItem(storageKey, value);
+    balanceEl.innerText = value;
+}
 
-    let val = Number(document.getElementById("addInput").value);
+// Кнопка Плюс
+document.getElementById('add-btn').addEventListener('click', () => {
+    const val = parseFloat(amountInput.value);
     if (!isNaN(val)) {
-        balance += val;
-        sendBalance();
-        updateDisplay();
+        let current = parseFloat(balanceEl.innerText);
+        saveBalance(current + val);
+        amountInput.value = '';
     }
-}
+});
 
-function subBalance() {
-    if (!isAdmin()) return alert("Вы не можете изменять баланс");
-
-    let val = Number(document.getElementById("subInput").value);
+// Кнопка Минус
+document.getElementById('sub-btn').addEventListener('click', () => {
+    const val = parseFloat(amountInput.value);
     if (!isNaN(val)) {
-        balance -= val;
-        sendBalance();
-        updateDisplay();
+        let current = parseFloat(balanceEl.innerText);
+        saveBalance(current - val);
+        amountInput.value = '';
     }
-}
-
-function sendBalance() {
-    Telegram.WebApp.sendData(JSON.stringify({ balance }));
-}
-
-updateDisplay();").value);
-    if (!isNaN(val)) {
-        balance -= val;
-        sendBalance();
-        updateDisplay();
-    }
-}
-
-function sendBalance() {
-    if (window.Telegram && window.Telegram.WebApp) {
-        Telegram.WebApp.sendData(JSON.stringify({ balance: balance }));
-    }
-}
-
-updateDisplay();.Telegram.WebApp) {
-        Telegram.WebApp.sendData(JSON.stringify({balance: balance}));
-    }
-}
-
-updateDisplay();�ация
-updateDisplay();
+});

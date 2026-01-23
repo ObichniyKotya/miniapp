@@ -1,7 +1,7 @@
 const tg = window.Telegram.WebApp;
 
 // Список разрешенных пользователей
-const ALLOWED_USERS = ['Obichniy_kotya', 'NeKzit_'];
+const ALLOWED_USERS = ['Obichniy_kotya', 'NeKzit'];
 
 // Инициализация Mini App
 tg.expand();
@@ -57,3 +57,4 @@ document.getElementById('sub-btn').addEventListener('click', () => {
         amountInput.value = '';
     }
 });
+

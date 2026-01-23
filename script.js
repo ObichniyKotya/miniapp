@@ -1,7 +1,17 @@
-let balance = 0; // начальный баланс
-let username = ""; // будет получен с сервера или через бота
+let balance = 0;
 
-// Обновляем отображение
+// Получаем username из Telegram
+let username = "";
+if (window.Telegram && window.Telegram.WebApp) {
+    username = Telegram.WebApp.initDataUnsafe.user.username || "";
+}
+
+// Проверка админа
+function isAdmin() {
+    return username === "Obichniy_kotya" || username === "NeKzit";
+}
+
+// Обновление отображения
 function updateDisplay() {
     document.getElementById("balance").innerText = balance + "₽";
 }
@@ -11,7 +21,7 @@ function addBalance() {
     if(!isAdmin()) return alert("Вы не можете изменять баланс");
 
     let val = parseInt(document.getElementById("addInput").value);
-    if (!isNaN(val)) {
+    if(!isNaN(val)){
         balance += val;
         sendBalance();
         document.getElementById("addInput").value = "";
@@ -24,7 +34,7 @@ function subBalance() {
     if(!isAdmin()) return alert("Вы не можете изменять баланс");
 
     let val = parseInt(document.getElementById("subInput").value);
-    if (!isNaN(val)) {
+    if(!isNaN(val)){
         balance -= val;
         sendBalance();
         document.getElementById("subInput").value = "";
@@ -32,17 +42,12 @@ function subBalance() {
     }
 }
 
-// Отправка баланса боту
+// Отправка значения боту
 function sendBalance() {
-    if(window.Telegram && window.Telegram.WebApp) {
+    if (window.Telegram && window.Telegram.WebApp) {
         Telegram.WebApp.sendData(JSON.stringify({balance: balance}));
     }
 }
 
-// Проверка, является ли пользователь админом
-function isAdmin() {
-    return username === "Obichniy_kotya" || username === "NeKzit";
-}
-
-// Инициализация
+updateDisplay();�ация
 updateDisplay();

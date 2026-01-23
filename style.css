@@ -9,39 +9,39 @@ body {
 
 .container {
     background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     text-align: center;
-    width: 90%;
-    max-width: 300px;
+    width: 80%;
+    max-width: 200px;
 }
 
 .balance {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 24px;
+    margin-bottom: 15px;
     font-weight: bold;
 }
 
 .row {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 input[type=number] {
-    font-size: 20px;
-    padding: 5px;
-    width: 80px;
+    font-size: 16px;
+    padding: 4px;
+    width: 60px;
     text-align: center;
 }
 
 button {
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 8px;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 6px;
     border: none;
     background: #4caf50;
     color: white;
@@ -54,7 +54,8 @@ button:hover {
 }
 
 label {
-    font-size: 18px;
+    font-size: 14px;
+}
 }ursor: pointer;
     transition: 0.2s;
 }

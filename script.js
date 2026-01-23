@@ -1,15 +1,11 @@
 let balance = 0;
 
-// Получаем user id из Telegram
-let userId = null;
+Telegram.WebApp.ready();
 
-if (window.Telegram && window.Telegram.WebApp) {
-    Telegram.WebApp.ready();
-    userId = Telegram.WebApp.initDataUnsafe.user.id;
-}
+let userId = Telegram.WebApp.initDataUnsafe.user.id;
 
-// УКАЖИ ТУТ ID АДМИНОВ
-const ADMINS = [Obichniy_kotya, NeKzit]; // <-- заменить на реальные
+// ВСТАВЬ СЮДА СВОИ ID
+const ADMINS = [Obichniy_kotya, NekZit];
 
 function isAdmin() {
     return ADMINS.includes(userId);
@@ -20,12 +16,9 @@ function updateDisplay() {
 }
 
 function addBalance() {
-    if (!isAdmin()) {
-        alert("Вы не можете изменять баланс");
-        return;
-    }
+    if (!isAdmin()) return alert("Вы не можете изменять баланс");
 
-    let val = parseInt(document.getElementById("addInput").value);
+    let val = Number(document.getElementById("addInput").value);
     if (!isNaN(val)) {
         balance += val;
         sendBalance();
@@ -34,12 +27,21 @@ function addBalance() {
 }
 
 function subBalance() {
-    if (!isAdmin()) {
-        alert("Вы не можете изменять баланс");
-        return;
-    }
+    if (!isAdmin()) return alert("Вы не можете изменять баланс");
 
-    let val = parseInt(document.getElementById("subInput").value);
+    let val = Number(document.getElementById("subInput").value);
+    if (!isNaN(val)) {
+        balance -= val;
+        sendBalance();
+        updateDisplay();
+    }
+}
+
+function sendBalance() {
+    Telegram.WebApp.sendData(JSON.stringify({ balance }));
+}
+
+updateDisplay();").value);
     if (!isNaN(val)) {
         balance -= val;
         sendBalance();

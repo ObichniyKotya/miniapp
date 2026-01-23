@@ -1,18 +1,23 @@
 const tg = window.Telegram.WebApp;
-
-// Список разрешенных пользователей
-const ALLOWED_USERS = ['Obichniy_kotya', 'NeKzit'];
-
-// Инициализация Mini App
 tg.expand();
 
-const user = tg.initDataUnsafe?.user;
-const appContainer = document.getElementById('app');
-const deniedContainer = document.getElementById('access-denied');
-const balanceEl = document.getElementById('balance');
 const amountInput = document.getElementById('amount');
 
-// Генерируем уникальный ключ для сохранения баланса именно этого пользователя
+function sendToBot(type) {
+    const val = amountInput.value;
+    if (!val) return;
+
+    // Формируем данные: например "+100" или "-100"
+    const result = (type === 'add' ? '+' : '-') + val;
+
+    // Отправляем данные боту и закрываем приложение
+    tg.sendData(result);
+    tg.close();
+}
+
+document.getElementById('add-btn').onclick = () => sendToBot('add');
+document.getElementById('sub-btn').onclick = () => sendToBot('sub');
+�льзователя
 // Если ID недоступен (тест вне ТГ), используем 'guest'
 const storageKey = user ? `balance_${user.id}` : 'balance_guest';
 
